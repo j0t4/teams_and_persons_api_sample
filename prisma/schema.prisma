@@ -3,33 +3,35 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model Person {
-  id        String  @id @default(uuid())
+  id        String   @id @default(uuid())
   name      String
   teams     Team[]
+  Meeting   Meeting? @relation(fields: [meetingId], references: [id])
+  meetingId String?
 
   @@map("persons")
 }
 
 model Team {
-  id        String  @id @default(uuid())
-  name      String
-  members   Person[]
-  meetings  Meeting[]
+  id       String    @id @default(uuid())
+  name     String
+  members  Person[]
+  meetings Meeting[]
 
   @@map("teams")
 }
 
 model Meeting {
-  id        String  @id @default(uuid())
+  id        String   @id @default(uuid())
   subject   String
   date      DateTime
   teamId    String
-  team      Team      @relation(fields: [teamId], references: [id])
+  team      Team     @relation(fields: [teamId], references: [id])
   attendees Person[]
 
   @@map("meetings")
