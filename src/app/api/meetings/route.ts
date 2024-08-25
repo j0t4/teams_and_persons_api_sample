@@ -9,7 +9,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   const body = await request.json()
   const meeting = await prisma.meeting.create({
-      {
+    data: {
       subject: body.subject,
       date: body.date,
       teamId: body.teamId,
