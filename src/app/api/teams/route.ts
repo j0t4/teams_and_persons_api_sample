@@ -9,9 +9,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   const body = await request.json()
   const team = await prisma.team.create({
-      {
       name: body.name,
-    },
   })
   return NextResponse.json(team)
 }
