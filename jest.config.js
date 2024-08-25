@@ -1,5 +1,5 @@
 module.exports = {
-  preset: 'ts-jest',
+  preset: 'ts-jest/presets/default',
   testEnvironment: 'node',
   setupFilesAfterEnv: ['<rootDir>/__tests__/setup.ts'],
   transform: {
