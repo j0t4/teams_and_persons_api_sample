@@ -1,11 +1,14 @@
 import { prisma } from '@/lib/prisma'
+import { PrismaClient } from '@prisma/client';
+
+const prismaClient = prisma as PrismaClient;
 
 beforeAll(async () => {
-  await prisma.$connect()
+  await prismaClient.$connect()
 })
 
 afterEach(async () => {
-  await prisma.$transaction(async (prisma) => {
+  await prismaClient.$transaction(async (prisma) => {
     const deletePersons = prisma.person.deleteMany()
     const deleteTeams = prisma.team.deleteMany()
     const deleteMeetings = prisma.meeting.deleteMany()
@@ -15,5 +18,5 @@ afterEach(async () => {
 })
 
 afterAll(async () => {
-  await prisma.$disconnect()
+  await prismaClient.$disconnect()
 })
