@@ -3,7 +3,6 @@ import request from 'supertest';
 //import server from 'nextjs-http-supertest';
 
 describe('Teams API', () => {
-  
 
   beforeAll(async () => {
     //
@@ -23,7 +22,7 @@ describe('Teams API', () => {
     const response = await request("http://localhost:3000")
       .post('/api/teams')
       .send({ name: 'Test Team' });
-    expect(response.status).toBe(200); // Assuming successful creation returns 201
+    expect(response.status).toBe(200); // Assuming successful creation returns 200
     expect(response.body).toHaveProperty('id');
     expect(response.body.name).toBe('Test Team');
   });
