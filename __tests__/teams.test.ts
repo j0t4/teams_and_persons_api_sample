@@ -66,6 +66,7 @@ describe('Teams API', () => {
     expect(deleteResponse.status).toBe(200);
 
     const getResponse = await request("http://localhost:3000").get(`/api/teams/${teamIdToDelete}`);
-    expect(getResponse.status).toBe(404);
+    expect(getResponse.status).toBe(200);
+    expect(getResponse.body).toEqual(null);
   });
 });

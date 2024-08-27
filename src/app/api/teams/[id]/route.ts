@@ -11,17 +11,26 @@ export async function GET(request: Request) {
   return NextResponse.json(team)
 }
 
-export async function PATCH(request: Request) {
-  const id = request.url.split('/').pop()!;
-  const body = await request.json();
+export async function PATCH(
+  req: Request,
+  { params }: { params: { id: string } },
+) {
+  const body = await req.json();
+  //const id = Number(params.id);
+  const id = params.id;
+ // if(isNaN(id)) {
+ //   return new NextResponse(null, { status: 400});
+ // }
+
   const updatedTeam = await prisma.team.update({
     where: {
-      id,
+      id, 
     },
-     {
-      name: body.name,
+    data: { 
+      name: body.name, 
     },
   });
+
   return NextResponse.json(updatedTeam);
 }
 
@@ -34,3 +43,4 @@ export async function DELETE(request: Request) {
   });
   return NextResponse.json({});
 }
+
