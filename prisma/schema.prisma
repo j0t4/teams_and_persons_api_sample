@@ -22,7 +22,6 @@ model Team {
   name     String
   members  Person[]
   meetings Meeting[]
-
   @@map("teams")
 }
 

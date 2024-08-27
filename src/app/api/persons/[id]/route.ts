@@ -22,9 +22,11 @@ export async function PATCH(
     where: {
       id, 
     },
-     { 
-      name: body.name, 
-    },
+     
+      data: {
+              name: body.name,
+      }
+    ,
   });
 
   return NextResponse.json(updatedPerson);

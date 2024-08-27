@@ -33,7 +33,7 @@ describe('Teams API', () => {
       .send({ name: 'Test Team' });
     expect(createResponse.status).toBe(200);
     const createdTeamId = createResponse.body.id;
-
+    //console.log(">>>>>>>>>>>>>>>>>><<"+createResponse.body.id)
     const getResponse = await request("http://localhost:3000").get(`/api/teams/${createdTeamId}`);
     expect(getResponse.status).toBe(200);
     expect(getResponse.body.id).toBe(createdTeamId);
