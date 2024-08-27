@@ -16,3 +16,17 @@ export async function POST(request: Request) {
   })
   return NextResponse.json(team)
 }
+
+export async function PATCH(request: Request) {
+  const id = request.url.split('/').pop()!;
+  const body = await request.json();
+  const updatedTeam = await prisma.team.update({
+    where: {
+      id,
+    },
+     {
+      name: body.name,
+    },
+  });
+  return NextResponse.json(updatedTeam);
+}
